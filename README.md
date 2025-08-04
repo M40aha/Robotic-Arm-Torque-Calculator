@@ -66,8 +66,5 @@ Where:
 
 ---
 
-## 📎 Author Notes
 
-Prepared for [Smart Methods - الأساليب الذكية] Robotics Program.  
-Documented with ❤️ by [Your Name].
 
