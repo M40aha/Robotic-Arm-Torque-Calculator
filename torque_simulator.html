@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Torque Calculator - Robotic Arm</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px; }
+        .container { background-color: #fff; padding: 20px; border-radius: 8px; max-width: 500px; margin: auto; }
+        input, button { padding: 10px; margin-top: 10px; width: 100%; font-size: 16px; }
+        button { background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        h2 { color: #333; }
+        .output { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Robotic Arm Torque Simulator</h2>
+        <label>Payload Mass (kg):</label>
+        <input type="number" id="mass" placeholder="Enter mass in kilograms" step="0.1">
+
+        <label>Length to Joint 1 (m):</label>
+        <input type="number" id="len1" value="0.10" step="0.01">
+
+        <label>Length to Joint 2 (m):</label>
+        <input type="number" id="len2" value="0.15" step="0.01">
+
+        <label>Gripper Length (m):</label>
+        <input type="number" id="len3" value="0.04" step="0.01">
+
+        <button onclick="calculateTorque()">Calculate Torque</button>
+
+        <div class="output" id="result"></div>
+    </div>
+
+    <script>
+        function calculateTorque() {
+            const g = 9.81;
+            const mass = parseFloat(document.getElementById('mass').value);
+            const len1 = parseFloat(document.getElementById('len1').value);
+            const len2 = parseFloat(document.getElementById('len2').value);
+            const len3 = parseFloat(document.getElementById('len3').value);
+            const force = mass * g;
+
+            const torque1 = (len1 + len2 + len3) * force;
+            const torque2 = (len2 + len3) * force;
+            const torque3 = len3 * force;
+
+            document.getElementById('result').innerHTML =
+                `Torque at Joint 1: ${torque1.toFixed(4)} Nm<br>` +
+                `Torque at Joint 2: ${torque2.toFixed(4)} Nm<br>` +
+                `Torque at Joint 3: ${torque3.toFixed(4)} Nm`;
+        }
+    </script>
+</body>
+</html>
